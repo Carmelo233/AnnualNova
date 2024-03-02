@@ -1,9 +1,9 @@
-import {login} from './pages/Login'
+import {Login} from './pages/Login'
 
 function App() {
     return (
         <div className="App">
-            login:<login/>
+            <Login />
         </div>
     );
 }
