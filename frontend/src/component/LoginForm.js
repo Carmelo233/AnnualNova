@@ -13,12 +13,8 @@ export function LoginForm() {
         <Form
             name="normal_login"
             className="login-form"
-            initialValues={{
-                remember: true,
-            }}
-            style={{
-                maxWidth: 400,
-            }}
+            initialValues={{remember: true}}
+            style={{maxWidth: 400}}
             onFinish={onFinish}
         >
             {/* 用户名输入 */}
@@ -32,7 +28,8 @@ export function LoginForm() {
                 ]}>
                 <div className='full-width col-center'>
                     <input type='text' className='form-item-input' placeholder='用户名'/>
-                    <Link href="/todo" className='form-item-link'>立即注册</Link>
+                    {/* TODO */}
+                    <Link href="/sign" className='form-item-link'>立即注册</Link>
                 </div>
             </Form.Item>
 
@@ -47,7 +44,8 @@ export function LoginForm() {
                 ]}>
                 <div className='full-width col-center'>
                     <input type='password' className='form-item-input' placeholder='密码'/>
-                    <Link href="/todo" className='form-item-link' style={{color: '#999'}}>忘记密码</Link>
+                    {/* TODO */}
+                    <Link href="/todo" className='form-item-link' style={{color: '#999'}}>找回密码</Link>
                 </div>
             </Form.Item>
 

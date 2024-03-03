@@ -26,8 +26,8 @@
 
 
 .form-item-link {
-    flex-wrap: nowrap;
-    margin: 10px;
+    flex-wrap: wrap;
+    padding: 10px;
 }
 
 .form-item-input {

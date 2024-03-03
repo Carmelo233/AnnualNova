@@ -1,17 +1,17 @@
 import React from "react";
-import './Login.css'
+import './Login.SignUp.Page.css'
 import {LoginForm} from '../component/LoginForm'
 import {Tool} from "../component/tool";
 
-export function Login() {
+export function LoginPage() {
     return (
-        <>
+        <div className='fullpage'>
             <div className="gradient"></div>
             <div className="background-image"></div>
-            <div className="App">
+            <div className='tool'><Tool/></div>
+            {/*<div className="fullpage">*/}
                 <div className='loginform col-center'><LoginForm/></div>
-                <div className='tool'><Tool/></div>
-            </div>
-        </>
+            {/*</div>*/}
+        </div>
     )
 }
