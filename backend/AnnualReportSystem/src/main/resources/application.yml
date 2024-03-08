@@ -13,8 +13,8 @@ mybatis:
 arg:
   access-secret: annualReportSystemAccess
   refresh-secret: annualReportSystemRefresh
-  access-expire-time: 1800
-  refresh-expire-time: 86400
+  access-expire-time: 1800000
+  refresh-expire-time: 86400000
 server:
   port: 9300
 

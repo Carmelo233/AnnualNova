@@ -31,12 +31,11 @@ public class UserServiceImpl implements UserService {
         //对密码进行加密
         String encryptedPassword = encoder.encode(password);
         User user = new User(null, username, encryptedPassword);
-        Integer uid = userMapper.selectMaxUid() + 1;
-        //生成两个token返回
-        String accessToken = jwtUtils.generateAccessToken(uid, username);
-        String refreshToken = jwtUtils.generateRefreshToken(uid, username);
-        //插入到数据库中
         userMapper.insertUser(user);
+        //生成两个token返回
+        String accessToken = jwtUtils.generateAccessToken(user.getUid(), username);
+        String refreshToken = jwtUtils.generateRefreshToken(user.getUid(), username);
+        //插入到数据库中
         Token token = new Token(accessToken, refreshToken);
         return token;
     }

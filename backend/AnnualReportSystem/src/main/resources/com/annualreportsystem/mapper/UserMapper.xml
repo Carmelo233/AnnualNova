@@ -12,7 +12,4 @@
     <select id="selectUser" resultType="com.annualreportsystem.pojo.User">
         select * from user where username = #{username}
     </select>
-    <select id="selectMaxUid" resultType="int">
-        select max(uid) as max_uid from user
-    </select>
 </mapper>

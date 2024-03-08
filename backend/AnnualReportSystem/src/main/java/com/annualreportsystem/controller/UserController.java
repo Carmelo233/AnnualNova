@@ -3,7 +3,6 @@ package com.annualreportsystem.controller;
 import com.annualreportsystem.pojo.Result;
 import com.annualreportsystem.pojo.Token;
 import com.annualreportsystem.service.UserService;
-import com.annualreportsystem.utils.JwtUtils;
 import com.annualreportsystem.utils.ResultUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,8 +34,8 @@ public class UserController {
         return resultUtils.success(token);
     }
 
-    @PostMapping("/logout")
-    public Result logout() {
+    @PostMapping("test")
+    public Result test() {
         return resultUtils.success();
     }
 }
