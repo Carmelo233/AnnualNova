@@ -1,12 +1,23 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Button, Form} from 'antd';
-
-import './loginfrom.css'
+import {useState} from "react";
+import './login.signup.from.css'
 import Link from "antd/es/typography/Link";
 
-export function LoginForm() {
+export function LoginForm(props) {
+    const [isreg,setisreg] = useState(false) //虽然写了状态但暂时没用
+
+    useEffect(() => {
+        setisreg(false)
+    }, [isreg]);
+
     function onFinish(e) {
         console.log(e)
+    }
+
+    function onClickToreg(){
+        setisreg(true)
+        props.getisreg(true)
     }
 
     return (
@@ -29,7 +40,7 @@ export function LoginForm() {
                 <div className='full-width col-center'>
                     <input type='text' className='form-item-input' placeholder='用户名'/>
                     {/* TODO */}
-                    <Link href="/sign" className='form-item-link'>立即注册</Link>
+                    <Link className='form-item-link' onClick={onClickToreg}>立即注册</Link>
                 </div>
             </Form.Item>
 
@@ -45,7 +56,7 @@ export function LoginForm() {
                 <div className='full-width col-center'>
                     <input type='password' className='form-item-input' placeholder='密码'/>
                     {/* TODO */}
-                    <Link href="/todo" className='form-item-link' style={{color: '#999'}}>找回密码</Link>
+                    <Link className='form-item-link' style={{color: '#999'}}>找回密码</Link>
                 </div>
             </Form.Item>
 

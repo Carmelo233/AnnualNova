@@ -1,6 +1,6 @@
 import {Button, Form} from 'antd'
 
-import './SignUpForm.css'
+import './login.signup.from.css'
 
 const onFinish = (values) => {
     console.log('Success:', values)
