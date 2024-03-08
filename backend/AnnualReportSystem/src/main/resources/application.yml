@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://112.74.176.236:3306/annual_report_system
+    username: root
+    password: root
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+
+arg:
+  access-secret: annualReportSystemAccess
+  refresh-secret: annualReportSystemRefresh
+  access-expire-time: 1800
+  refresh-expire-time: 86400
+server:
+  port: 9300
+
