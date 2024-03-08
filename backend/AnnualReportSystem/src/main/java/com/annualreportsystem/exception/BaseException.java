@@ -1,10 +1,10 @@
 package com.annualreportsystem.exception;
 
-public class BaseException extends RuntimeException{
+public class BaseException extends RuntimeException {
     private Integer code;
     private String msg;
 
-    public BaseException(Integer code,String msg){
+    public BaseException(Integer code, String msg) {
         super(msg);
         this.code = code;
         this.msg = msg;

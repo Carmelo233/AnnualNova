@@ -9,7 +9,6 @@ import com.annualreportsystem.service.UserService;
 import com.annualreportsystem.utils.JwtUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -22,24 +21,23 @@ public class UserServiceImpl implements UserService {
     private BCryptPasswordEncoder encoder;
     @Autowired
     private JwtUtils jwtUtils;
+
     @Override
-    public Token register(String username, String password){
+    public Token register(String username, String password) {
         log.info("判断用户名是否被占用");
         //先判断用户名是否被占用
-        if(userMapper.selectUser(username) != null)
+        if (userMapper.selectUser(username) != null)
             throw new BaseException(ResultEnum.USERNAME_DUPLICATE.getCode(), ResultEnum.USERNAME_DUPLICATE.getMsg());
         //对密码进行加密
         String encryptedPassword = encoder.encode(password);
-        User user = new User(null,username,encryptedPassword);
-        Integer uid = userMapper.selectMaxUid()+1;
+        User user = new User(null, username, encryptedPassword);
+        Integer uid = userMapper.selectMaxUid() + 1;
         //生成两个token返回
-        String accessToken = jwtUtils.generateAccessToken(uid,username);
-        System.out.println(accessToken);
-        String refreshToken = jwtUtils.generateRefreshToken(uid,username);
-        System.out.println(refreshToken);
+        String accessToken = jwtUtils.generateAccessToken(uid, username);
+        String refreshToken = jwtUtils.generateRefreshToken(uid, username);
         //插入到数据库中
         userMapper.insertUser(user);
-        Token token = new Token(accessToken,refreshToken);
+        Token token = new Token(accessToken, refreshToken);
         return token;
     }
 
@@ -48,17 +46,17 @@ public class UserServiceImpl implements UserService {
         log.info("判断用户是否存在");
         User user = userMapper.selectUser(username);
         //查找用户名未找到该用户
-        if(user == null){
+        if (user == null) {
             //抛出用户不存在异常
             throw new BaseException(ResultEnum.USER_NOT_EXIST.getCode(), ResultEnum.USER_NOT_EXIST.getMsg());
-        }else if(encoder.matches(password,user.getUserPassword()) == false){
+        } else if (encoder.matches(password, user.getUserPassword()) == false) {
             //密码不匹配，抛出用户密码错误异常
             throw new BaseException(ResultEnum.WRONG_PASSWORD.getCode(), ResultEnum.WRONG_PASSWORD.getMsg());
-        }else{
+        } else {
             //生成两个token返回
-            String accessToken = jwtUtils.generateAccessToken(user.getUid(),username);
-            String refreshToken = jwtUtils.generateRefreshToken(user.getUid(),username);
-            Token token = new Token(accessToken,refreshToken);
+            String accessToken = jwtUtils.generateAccessToken(user.getUid(), username);
+            String refreshToken = jwtUtils.generateRefreshToken(user.getUid(), username);
+            Token token = new Token(accessToken, refreshToken);
             return token;
         }
     }

@@ -15,10 +15,11 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class GlobalExceptionHandler {
     @Autowired
     private ResultUtils resultUtils;
+
     @ExceptionHandler(BaseException.class)
-    public Result handelException(BaseException e){
+    public Result handelException(BaseException e) {
         e.printStackTrace();
-        if(e.getCode()==null)
+        if (e.getCode() == null)
             return resultUtils.error(ResultEnum.UNKNOWN_ERROR);
         return resultUtils.error(e.getCode(), e.getMsg());
     }

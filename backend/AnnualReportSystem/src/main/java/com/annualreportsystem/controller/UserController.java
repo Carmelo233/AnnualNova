@@ -20,20 +20,23 @@ public class UserController {
     private UserService userService;
     @Autowired
     private ResultUtils resultUtils;
+
     @PostMapping("/register")
-    public Result register(@RequestParam(value = "username")String username,
-                           @RequestParam(value = "password")String password){
-        Token token = userService.register(username,password);
+    public Result register(@RequestParam(value = "username") String username,
+                           @RequestParam(value = "password") String password) {
+        Token token = userService.register(username, password);
         return resultUtils.success(token);
     }
+
     @PostMapping("/login")
-    public Result login(@RequestParam(value = "username")String username,
-                        @RequestParam(value = "password")String password){
-        Token token = userService.login(username,password);
+    public Result login(@RequestParam(value = "username") String username,
+                        @RequestParam(value = "password") String password) {
+        Token token = userService.login(username, password);
         return resultUtils.success(token);
     }
+
     @PostMapping("/logout")
-    public Result logout(){
+    public Result logout() {
         return resultUtils.success();
     }
 }
