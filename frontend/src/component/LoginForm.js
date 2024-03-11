@@ -3,19 +3,35 @@ import {Button, Form} from 'antd';
 import {useState} from "react";
 import './login.signup.from.css'
 import Link from "antd/es/typography/Link";
+import {login} from "../apis/login";
+import {setAccessToken, setRefreshToken} from "../config/storage";
 
 export function LoginForm(props) {
-    const [isreg,setisreg] = useState(false) //虽然写了状态但暂时没用
+    const [isreg, setisreg] = useState(false) //虽然写了状态但暂时没用
 
     useEffect(() => {
         setisreg(false)
     }, [isreg]);
 
     function onFinish(e) {
-        console.log(e)
+        console.log("完成登录表单：", e)
+
+        login(e.username, e.password).then(res => {
+            console.log('登录请求成功：', res)
+            if (res.code === 605) {
+                alert("密码错误!")
+            } else if (res.code === 604) {
+                alert("用户不存在！")
+            } else if (res.code === 600) {
+                setAccessToken(res.data.accessToken)
+                setRefreshToken(res.data.refreshToken)
+            } else {
+                console.log("未知登录失败：", res)
+            }
+        })
     }
 
-    function onClickToreg(){
+    function onClickToreg() {
         setisreg(true)
         props.getisreg(true)
     }

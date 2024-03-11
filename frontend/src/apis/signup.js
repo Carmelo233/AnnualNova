@@ -1,8 +1,8 @@
 import server from "../utils/server";
-/*登录*/
-export const login = (username, password) => {
+/*注册*/
+export const signup = (username, password) => {
     return server({
-        url: '/login',
+        url: '/register',
         method: 'POST',
         data: {
             username: username,

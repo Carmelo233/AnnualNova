@@ -1,14 +1,11 @@
 import React from "react";
+import {useState} from "react";
+
 import './Login.SignUp.Page.css'
+
 import {LoginForm} from '../component/LoginForm'
 import {SignUpForm} from "../component/SignUpForm";
 import {Tool} from "../component/tool";
-import {useState} from "react";
-
-const getToken =()=>{
-    
-}
-
 
 export function LoginSignUpPage() {
     const [isreg, setisreg] = useState(false)
@@ -22,8 +19,7 @@ export function LoginSignUpPage() {
         <div className={isreg ? "background-image filter" : "background-image"}></div>
         <div className='tool'><Tool/></div>
         <div className={isreg ? 'login-signup-form fadein' : 'login-signup-form'}>
-            {isreg ? <SignUpForm/> : <LoginForm getisreg={getisreg}/>}
+            {isreg ? <SignUpForm /> : <LoginForm getisreg={getisreg} />}
         </div>
-        )
     </div>)
 }
