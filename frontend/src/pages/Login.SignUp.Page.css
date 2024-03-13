@@ -37,19 +37,61 @@
     z-index: -1;
 }
 
-.loginform {
+.login-signup-form {
     margin: auto 25%;
     align-self: center;
+    align-items: center;
 }
 
 .tool {
     position: absolute;
     top: 0;
     right: 0;
-    margin: 24px;
+    margin: 2.222vw;
 }
 
-
 .filter{
+    filter: blur(0px);
+}
+
+.gradient.filter{
+    /* 兼容 */
+    -webkit-transition: all 2s;
+    -moz-transition: all 2s;
+    -ms-transition: all 2s;
+    -o-transition: all 2s;
+    transition: all 2s;
     filter: blur(5px);
+}
+
+.background-image.filter{
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    -ms-transition: all 1s;
+    -o-transition: all 1s;
+    transition: all 1s;
+    filter: blur(5px);
+}
+
+.fadeout {
+    opacity: 1;
+}
+
+.fadein {
+    opacity: 0;
+    animation: fadeinAnimation 1.5s forwards;
+}
+
+@keyframes fadeinAnimation {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.login-signup-form.fadeout{
+    -webkit-transition: all 1.5s;
+    -moz-transition: all 1.5s;
+    -ms-transition: all 1.5s;
+    -o-transition: all 1.5s;
+    transition: all 1.5s;
+    opacity: 0;
 }

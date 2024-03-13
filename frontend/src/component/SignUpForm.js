@@ -1,35 +1,40 @@
 import {Button, Form} from 'antd'
 
-import './SignUpForm.css'
+import './login.signup.from.css'
+import {signup} from "../apis/signup";
+import {setAccessToken, setRefreshToken} from "../config/storage";
 
-const onFinish = (values) => {
-    console.log('Success:', values)
-}
 
-const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo)
-}
+export function SignUpForm(props) {
 
-export function SignUpForm() {
+    const onFinish = (values) => {
+        console.log("完成注册表单：", values)
+
+        signup(values.usernameS, values.passwordS).then(res => {
+            console.log('注册请求成功：', res)
+            if (res.code === 603) {
+                alert("用户名被占用！")
+            } else if (res.code === 600) {
+                setAccessToken(res.data.accessToken)
+                setRefreshToken(res.data.refreshToken)
+            } else {
+                console.log("未知登录失败：", res)
+            }
+        })
+    }
+
+    const onFinishFailed = (errorInfo) => {
+        console.log('Failed:', errorInfo)
+    }
+
     return (
         <Form
             name="signUpForm"
             className='signUpForm'
-            labelCol={{
-                span: 0,
-            }}
-            wrapperCol={{
-                span: 24,
-            }}
-            style={{
-                maxWidth: 477,
-            }}
-            initialValues={{
-                remember: true,
-            }}
+            initialValues={{remember: true}}
+            style={{maxWidth: 400}}
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
-            autoComplete="off"
         >
             <Form.Item
                 name="usernameS"
@@ -54,7 +59,6 @@ export function SignUpForm() {
                         message: '密码格式不符合要求！',
                     },
                 ]}
-                on
             >
                 <div className='full-width col-center'>
                     <input type='password' className='form-item-input' placeholder='用户密码'/>
@@ -79,9 +83,7 @@ export function SignUpForm() {
                 </div>
             </Form.Item>
 
-            <Form.Item
-                name='signup'
-            >
+            <Form.Item name='signup'>
                 <div className='full-width row-center'>
                     <Button type="primary" htmlType="signup" className='signup-form-button'>
                         立即注册
