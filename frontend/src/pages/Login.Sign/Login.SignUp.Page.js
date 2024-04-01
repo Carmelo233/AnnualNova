@@ -3,9 +3,9 @@ import {useState} from "react";
 
 import './Login.SignUp.Page.css'
 
-import {LoginForm} from '../component/LoginForm'
-import {SignUpForm} from "../component/SignUpForm";
-import {Tool} from "../component/tool";
+import {LoginForm} from '../../component/LoginForm'
+import {SignUpForm} from "../../component/SignUpForm";
+import {Tool} from "../../component/tool";
 
 export function LoginSignUpPage() {
     const [isreg, setisreg] = useState(false)
