@@ -1,5 +1,5 @@
-import React from "react";
-import {useState} from "react";
+import React from "react"
+import {useState} from "react"
 
 import './Login.SignUp.Page.css'
 
@@ -14,12 +14,14 @@ export function LoginSignUpPage() {
         setisreg(_isreg)
     }
 
-    return (<div className='fullpage'>
-        <div className={isreg ? "gradient" : "gradient filter"}></div>
-        <div className={isreg ? "background-image filter" : "background-image"}></div>
-        <div className='tool'><Tool/></div>
-        <div className={isreg ? 'login-signup-form fadein' : 'login-signup-form'}>
-            {isreg ? <SignUpForm /> : <LoginForm getisreg={getisreg} />}
+    return (
+        <div className='fullpage'>
+            <div className={isreg ? "gradient" : "gradient filter"}></div>
+            <div className={isreg ? "background-image filter" : "background-image"}></div>
+            <div className='tool'><Tool/></div>
+            <div className={isreg ? 'login-signup-form fadein' : 'login-signup-form'}>
+                {isreg ? <SignUpForm getisreg={getisreg}/> : <LoginForm getisreg={getisreg}/>}
+            </div>
         </div>
-    </div>)
+    )
 }

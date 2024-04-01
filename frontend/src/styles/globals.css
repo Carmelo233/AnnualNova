@@ -24,21 +24,6 @@
   --full-height: 100vh;
 }
 
-body {
-  background-color: var(--gray);
-  color: var(--black);
-  margin: 0;
-  padding: 0;
-  height: var(--full-height);
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  user-select: none;
-  touch-action: pan-x pan-y;
-  overflow: hidden;
-}
-
 /* 自定义滚动条 分别为整体样式、轨道背景颜色、滚动滑块样式 */
 ::-webkit-scrollbar {
   --bar-width: 5px;

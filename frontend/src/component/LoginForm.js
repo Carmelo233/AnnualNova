@@ -1,16 +1,17 @@
 import React, {useEffect} from "react";
 import {Button, Form} from 'antd';
+import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import './login.signup.from.css'
 import Link from "antd/es/typography/Link";
 import {login} from "../apis/login";
 import {setAccessToken, setRefreshToken} from "../config/storage";
-import {useNavigate} from "react-router-dom";
 
 export function LoginForm(props) {
-    const [isreg, setisreg] = useState(false) //虽然写了状态但暂时没用
+    const [isreg, setisreg] = useState(false)
     //装获取的rescode的值
     const [rescode, setRescode] = useState(600)
+
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -22,14 +23,14 @@ export function LoginForm(props) {
         props.getisreg(true)
     }
 
-    function onFinish(e) {
-        console.log("完成登录表单：", e)
+    function onFinish(values) {
+        console.log("完成登录表单：", values)
 
-        login(e.username, e.password).then(res => {
+        login(values.usernameS, values.passwordS).then(res => {
             console.log('登录请求成功：', res)
             //获取rescode
             setRescode(res.code)
-            if (rescode === 600) {
+            if (res.code === 600) {
                 setAccessToken(res.data.accessToken)
                 setRefreshToken(res.data.refreshToken)
                 navigate("/chat")
@@ -53,7 +54,7 @@ export function LoginForm(props) {
                 rules={[
                     // 用户名校验
                     () => ({
-                        validator() {
+                        validator () {
                             if (rescode === 604) {
                                 return Promise.reject('用户名不存在')
                             }
@@ -78,7 +79,7 @@ export function LoginForm(props) {
                 rules={[
                     // 密码校验
                     () => ({
-                        validator() {
+                        validator () {
                             if (rescode === 605) {
                                 return Promise.reject('密码不正确')
                             }
@@ -106,5 +107,6 @@ export function LoginForm(props) {
                 </div>
             </Form.Item>
         </Form>
+
     )
 }

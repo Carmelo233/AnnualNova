@@ -1,6 +1,7 @@
 import { Button, Form, Space } from 'antd'
 import {useNavigate} from "react-router-dom";
 import React, { useEffect,useState } from "react"
+
 import Link from "antd/es/typography/Link"
 import './login.signup.from.css'
 import { signup } from "../apis/signup"
@@ -17,11 +18,6 @@ export function SignUpForm (props) {
     useEffect(() => {
         setisreg(true)
     }, [isreg])
-
-    function onClickToreg () {
-        setisreg(false)
-        props.getisreg(false)
-    }
 
     function onClickTologin () {
         setisreg(true)
@@ -43,7 +39,7 @@ export function SignUpForm (props) {
                 setRefreshToken(res.data.refreshToken)
                 navigate("/chat")
             } else {
-                console.log("未知登录失败：", res)
+                console.log("未知注册失败：", res)
             }
         })
     }
