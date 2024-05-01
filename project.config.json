@@ -1,4 +1,5 @@
 {
+  "appid": "wx4a4eb115a16ca812",
   "compileType": "miniprogram",
   "libVersion": "3.4.3",
   "packOptions": {
@@ -21,8 +22,7 @@
   },
   "condition": {},
   "editorSetting": {
-    "tabIndent": "auto",
+    "tabIndent": "insertSpaces",
     "tabSize": 2
-  },
-  "appid": "wx4a4eb115a16ca812"
+  }
 }

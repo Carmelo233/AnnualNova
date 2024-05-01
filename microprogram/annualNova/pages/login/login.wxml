@@ -1,0 +1,8 @@
+<!--index.wxml-->
+<scroll-view class="scrollarea" scroll-y type="list">
+  <image src="../../images/loginBG.png" class="bg-img"></image>
+  <view class="container">
+    <button bindtap="login" class="login">授权登录</button>
+  </view>
+  <view class="bg-color"></view>
+</scroll-view>

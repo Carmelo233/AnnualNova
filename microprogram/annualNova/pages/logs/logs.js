@@ -1,5 +1,6 @@
 // logs.js
 const util = require('../../utils/util.js')
+const loginBG = "../../images/loginBG.png"
 
 Page({
   data: {
