@@ -1,4 +1,25 @@
+<scroll-view class="scrollarea" scroll-y>
+  <view class="today-annual">
+    <view class="today-date">{{todaydate}}</view>
+    <view class="today-show">
+      <image src="../../images/bubble1.png"></image>
+      今日年报
+    </view>
+    <view wx:for="{{annuallist}}">
+      <view class="annualtitle">{{item.title}}</view>
+    </view>
+  </view>
 
-<scroll-view class="scrollarea" scroll-y type="list">
-  
+  <view class="function">
+    <view class="history-annual">
+      <view class="history-date">{{lastdate}}</view>
+
+      <view wx:for="{{annuallist}}">
+        <view class="annualtitle">{{item.title}}</view>
+      </view>
+      
+    </view>
+  </view>
+
+  <view class="upload"></view>
 </scroll-view>
