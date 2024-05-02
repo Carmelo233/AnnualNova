@@ -1,4 +1,4 @@
-package com.annualreportsystem.pojo;
+package com.annualreportsystem.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

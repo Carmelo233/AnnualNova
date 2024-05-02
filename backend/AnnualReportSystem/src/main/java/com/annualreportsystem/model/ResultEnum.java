@@ -1,4 +1,4 @@
-package com.annualreportsystem.pojo;
+package com.annualreportsystem.model;
 
 public enum ResultEnum {
     SUCCESS(600, "请求成功"),

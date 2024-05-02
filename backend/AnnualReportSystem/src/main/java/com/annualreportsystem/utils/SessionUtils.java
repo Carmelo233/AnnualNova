@@ -1,6 +1,6 @@
 package com.annualreportsystem.utils;
 
-import com.annualreportsystem.pojo.User;
+import com.annualreportsystem.model.User;
 
 public class SessionUtils {
     private static ThreadLocal<User> userSessionVOThreadLocal = new ThreadLocal<>();

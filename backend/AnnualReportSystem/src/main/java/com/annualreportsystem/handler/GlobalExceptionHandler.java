@@ -1,9 +1,8 @@
 package com.annualreportsystem.handler;
 
 import com.annualreportsystem.exception.BaseException;
-import com.annualreportsystem.pojo.Result;
-import com.annualreportsystem.pojo.ResultEnum;
-import com.annualreportsystem.utils.JwtUtils;
+import com.annualreportsystem.model.Result;
+import com.annualreportsystem.model.ResultEnum;
 import com.annualreportsystem.utils.ResultUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

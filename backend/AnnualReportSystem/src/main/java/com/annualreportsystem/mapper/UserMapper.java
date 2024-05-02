@@ -1,6 +1,6 @@
 package com.annualreportsystem.mapper;
 
-import com.annualreportsystem.pojo.User;
+import com.annualreportsystem.model.User;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

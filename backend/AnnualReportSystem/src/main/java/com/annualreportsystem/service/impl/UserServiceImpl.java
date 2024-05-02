@@ -2,9 +2,9 @@ package com.annualreportsystem.service.impl;
 
 import com.annualreportsystem.exception.BaseException;
 import com.annualreportsystem.mapper.UserMapper;
-import com.annualreportsystem.pojo.ResultEnum;
-import com.annualreportsystem.pojo.Token;
-import com.annualreportsystem.pojo.User;
+import com.annualreportsystem.model.ResultEnum;
+import com.annualreportsystem.model.Token;
+import com.annualreportsystem.model.User;
 import com.annualreportsystem.service.UserService;
 import com.annualreportsystem.utils.JwtUtils;
 import lombok.extern.slf4j.Slf4j;

@@ -1,11 +1,25 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://112.74.176.236:3306/annual_report_system
+    url: jdbc:mysql://localhost:3306/annual_report_system?serverTimezone=Asia/Shanghai
     username: root
     password: root
+  redis:
+    host: localhost
+    port: 6379
+    database: 7
+    jedis:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
+        max-wait: -1ms
+  jackson:
+    time-zone: Asia/Shanghai
 
 mybatis:
+  mapper-locations: classpath:mapper/*.xml  # 指定mapper XML文件的位置
+  type-aliases-package: com.annualreportsystem.model  # 指定别名类所在的包
   configuration:
     map-underscore-to-camel-case: true
     log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
@@ -18,3 +32,21 @@ arg:
 server:
   port: 9300
 
+knife4j:
+  enable: true
+  openapi:
+    title: "AnnualNova 接口文档"
+    description: "AnnualNova 接口文档"
+    email: 2484315823@qq.com
+    concat: lys
+    url: https://docs.xiaominfo.com
+    version: v4.0
+    license: Apache 2.0
+    license-url: https://stackoverflow.com/
+    terms-of-service-url: https://stackoverflow.com/
+#    group:
+#      test1:
+#        group-name: 分组名称
+#        api-rule: package
+#        api-rule-resources:
+#          - com.knife4j.demo.new3

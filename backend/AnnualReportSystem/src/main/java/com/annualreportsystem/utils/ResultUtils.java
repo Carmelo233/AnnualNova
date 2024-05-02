@@ -1,9 +1,9 @@
 package com.annualreportsystem.utils;
 
-import com.annualreportsystem.pojo.Result;
-import com.annualreportsystem.pojo.ResultEnum;
-import com.annualreportsystem.pojo.Token;
-import com.annualreportsystem.pojo.User;
+import com.annualreportsystem.model.Result;
+import com.annualreportsystem.model.ResultEnum;
+import com.annualreportsystem.model.Token;
+import com.annualreportsystem.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

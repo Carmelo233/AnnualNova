@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.annualreportsystem.mapper.AnalysisResultMapper">
+
+    <resultMap id="BaseResultMap" type="com.annualreportsystem.model.AnalysisResult">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="reportId" column="report_id" jdbcType="INTEGER"/>
+            <result property="financialAbstract" column="financial_abstract" jdbcType="VARCHAR"/>
+            <result property="nonFinancialAbstract" column="non_financial_abstract" jdbcType="VARCHAR"/>
+            <result property="threeFactorScore" column="three_factor_score" jdbcType="DOUBLE"/>
+            <result property="sevenFactorScore" column="seven_factor_score" jdbcType="DOUBLE"/>
+            <result property="emotionScore" column="emotion_score" jdbcType="DOUBLE"/>
+            <result property="comprehensiveScore" column="comprehensive_score" jdbcType="DOUBLE"/>
+            <result property="deleted" column="deleted" jdbcType="INTEGER"/>
+            <result property="status" column="status" jdbcType="INTEGER"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,report_id,financial_abstract,
+        non_financial_abstract,three_factor_score,seven_factor_score,
+        emotion_score,comprehensive_score,deleted,
+        status,create_time
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from analysis_result
+        where  id = #{id,jdbcType=INTEGER} 
+    </select>
+    <select id="selectByReportId" resultType="com.annualreportsystem.model.AnalysisResult">
+        select
+        <include refid="Base_Column_List" />
+        from analysis_result
+        where  report_id = #{reportId,jdbcType=INTEGER}
+        and deleted = 0
+        and status = 0
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from analysis_result
+        where  id = #{id,jdbcType=INTEGER} 
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.annualreportsystem.model.AnalysisResult" useGeneratedKeys="true">
+        insert into analysis_result
+        ( id,report_id,financial_abstract
+        ,non_financial_abstract,three_factor_score,seven_factor_score
+        ,emotion_score,comprehensive_score,deleted
+        ,status,create_time)
+        values (#{id,jdbcType=INTEGER},#{reportId,jdbcType=INTEGER},#{financialAbstract,jdbcType=VARCHAR}
+        ,#{nonFinancialAbstract,jdbcType=VARCHAR},#{threeFactorScore,jdbcType=DOUBLE},#{sevenFactorScore,jdbcType=DOUBLE}
+        ,#{emotionScore,jdbcType=DOUBLE},#{comprehensiveScore,jdbcType=DOUBLE},#{deleted,jdbcType=INTEGER}
+        ,#{status,jdbcType=INTEGER},#{createTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.annualreportsystem.model.AnalysisResult" useGeneratedKeys="true">
+        insert into analysis_result
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="id != null">id,</if>
+                <if test="reportId != null">report_id,</if>
+                <if test="financialAbstract != null">financial_abstract,</if>
+                <if test="nonFinancialAbstract != null">non_financial_abstract,</if>
+                <if test="threeFactorScore != null">three_factor_score,</if>
+                <if test="sevenFactorScore != null">seven_factor_score,</if>
+                <if test="emotionScore != null">emotion_score,</if>
+                <if test="comprehensiveScore != null">comprehensive_score,</if>
+                <if test="deleted != null">deleted,</if>
+                <if test="status != null">status,</if>
+                <if test="createTime != null">create_time,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="id != null">#{id,jdbcType=INTEGER},</if>
+                <if test="reportId != null">#{reportId,jdbcType=INTEGER},</if>
+                <if test="financialAbstract != null">#{financialAbstract,jdbcType=VARCHAR},</if>
+                <if test="nonFinancialAbstract != null">#{nonFinancialAbstract,jdbcType=VARCHAR},</if>
+                <if test="threeFactorScore != null">#{threeFactorScore,jdbcType=DOUBLE},</if>
+                <if test="sevenFactorScore != null">#{sevenFactorScore,jdbcType=DOUBLE},</if>
+                <if test="emotionScore != null">#{emotionScore,jdbcType=DOUBLE},</if>
+                <if test="comprehensiveScore != null">#{comprehensiveScore,jdbcType=DOUBLE},</if>
+                <if test="deleted != null">#{deleted,jdbcType=INTEGER},</if>
+                <if test="status != null">#{status,jdbcType=INTEGER},</if>
+                <if test="createTime != null">#{createTime,jdbcType=TIMESTAMP},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.annualreportsystem.model.AnalysisResult">
+        update analysis_result
+        <set>
+                <if test="reportId != null">
+                    report_id = #{reportId,jdbcType=INTEGER},
+                </if>
+                <if test="financialAbstract != null">
+                    financial_abstract = #{financialAbstract,jdbcType=VARCHAR},
+                </if>
+                <if test="nonFinancialAbstract != null">
+                    non_financial_abstract = #{nonFinancialAbstract,jdbcType=VARCHAR},
+                </if>
+                <if test="threeFactorScore != null">
+                    three_factor_score = #{threeFactorScore,jdbcType=DOUBLE},
+                </if>
+                <if test="sevenFactorScore != null">
+                    seven_factor_score = #{sevenFactorScore,jdbcType=DOUBLE},
+                </if>
+                <if test="emotionScore != null">
+                    emotion_score = #{emotionScore,jdbcType=DOUBLE},
+                </if>
+                <if test="comprehensiveScore != null">
+                    comprehensive_score = #{comprehensiveScore,jdbcType=DOUBLE},
+                </if>
+                <if test="deleted != null">
+                    deleted = #{deleted,jdbcType=INTEGER},
+                </if>
+                <if test="status != null">
+                    status = #{status,jdbcType=INTEGER},
+                </if>
+                <if test="createTime != null">
+                    create_time = #{createTime,jdbcType=TIMESTAMP},
+                </if>
+        </set>
+        where   id = #{id,jdbcType=INTEGER} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.annualreportsystem.model.AnalysisResult">
+        update analysis_result
+        set 
+            report_id =  #{reportId,jdbcType=INTEGER},
+            financial_abstract =  #{financialAbstract,jdbcType=VARCHAR},
+            non_financial_abstract =  #{nonFinancialAbstract,jdbcType=VARCHAR},
+            three_factor_score =  #{threeFactorScore,jdbcType=DOUBLE},
+            seven_factor_score =  #{sevenFactorScore,jdbcType=DOUBLE},
+            emotion_score =  #{emotionScore,jdbcType=DOUBLE},
+            comprehensive_score =  #{comprehensiveScore,jdbcType=DOUBLE},
+            deleted =  #{deleted,jdbcType=INTEGER},
+            status =  #{status,jdbcType=INTEGER},
+            create_time =  #{createTime,jdbcType=TIMESTAMP}
+        where   id = #{id,jdbcType=INTEGER} 
+    </update>
+</mapper>

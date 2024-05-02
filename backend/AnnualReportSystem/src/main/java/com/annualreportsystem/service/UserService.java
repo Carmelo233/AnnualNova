@@ -1,6 +1,6 @@
 package com.annualreportsystem.service;
 
-import com.annualreportsystem.pojo.Token;
+import com.annualreportsystem.model.Token;
 
 public interface UserService {
     Token register(String username, String password);
