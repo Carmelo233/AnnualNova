@@ -1,25 +1,53 @@
-<scroll-view class="scrollarea" scroll-y>
+<scroll-view class="scrollarea">
   <view class="today-annual">
-    <view class="today-date">{{todaydate}}</view>
+    <view class="date">{{todaydate}}</view>
     <view class="today-show">
       <image src="../../images/bubble1.png"></image>
-      今日年报
+      <view>今日年报</view>
     </view>
-    <view wx:for="{{annuallist}}">
-      <view class="annualtitle">{{item.title}}</view>
-    </view>
+    <scroll-view style="height: calc(12vh + 2px);" scroll-y>
+      <view wx:for="{{annuallist}}">
+        <view class="title">{{item.title}}</view>
+        <view class="divider"></view>
+      </view>
+    </scroll-view>
   </view>
 
   <view class="function">
-    <view class="history-annual">
-      <view class="history-date">{{lastdate}}</view>
-
-      <view wx:for="{{annuallist}}">
-        <view class="annualtitle">{{item.title}}</view>
+    <view class="history-annual left-half">
+      <view class="date">{{lastdate}}</view>
+      <scroll-view style="height: calc(18vh + 3px);" scroll-y>
+        <view wx:for="{{annuallist}}">
+          <view class="title">{{item.title}}</view>
+          <view class="divider"></view>
+        </view>
+      </scroll-view>
+    </view>
+    <view class="right-half">
+      <view class="newchat">
+        <image src="../../images/+.png" mode="" />
+        <view>新的聊天</view>
       </view>
-      
+      <view class="earlier-record">
+        <image src="../../images/more_vector.png" mode="" />
+        <text>更早的记录</text>
+      </view>
+      <view class="tools">
+        <image src="../../images/avatar.png" mode="heightFix"></image>
+        <image src="../../images/suntheme.png" mode="heightFix"></image>
+        <image src="../../images/bell.png" mode="heightFix"></image>
+      </view>
     </view>
   </view>
 
-  <view class="upload"></view>
+  <view class="upload">
+    <image src="{{curstatus.uploadimg}}" mode="heightFix"></image>
+    <view class="msg1">{{curstatus.msg1}}</view>
+    <view class="msg23">{{curstatus.msg2}}</view>
+    <view class="msg23">{{curstatus.msg3}}</view>
+    <view class="upload-button" bind:tap="uploadannual">
+      <image src="{{curstatus.upload_button_img}}" mode="heightFix"></image>
+      <view>{{curstatus.msg4}}</view>
+    </view>
+  </view>
 </scroll-view>

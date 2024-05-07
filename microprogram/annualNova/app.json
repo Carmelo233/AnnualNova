@@ -2,6 +2,7 @@
   "pages": [
     "pages/login/login",
     "pages/home/home",
+    "pages/chat/chat",
     "pages/logs/logs"
   ],
   "window": {

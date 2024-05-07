@@ -1,0 +1,2 @@
+<!--pages/chat/chat.wxml-->
+<button bind:tap="getchatlist">获取</button>
