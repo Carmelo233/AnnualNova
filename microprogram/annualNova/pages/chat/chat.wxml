@@ -1,30 +1,58 @@
-<view class="blacktoanalyze">
-  <image src="../../images/back.png"></image>
-  回到文件分析界面
-</view>
-
-<view class="divider"></view>
-
-<scroll-view>
-  <view class="today-annual">
-    <image src="../../images/bot_avatar.png"></image>
-    <view>今日年报</view>
-  </view>
-  <view class="chat">
-    <view>你好，请帮我分析我上传的这一份年报文件，并生成一份报告。</view>
-    <image src="../../images/avatar.png"></image>
-  </view>
-  <view class="report">
-    <view class="cover"></view>
-    <view>{{annual.data.reportName}}</view>
+<scroll-view class="scrollarea">
+  <view class="blacktoanalyze">
+    <image src="../../images/back.png" mode="heightFix"></image>
+    回到文件分析界面
   </view>
 
-  <view class="divider"></view>
+  <scroll-view style="height: 70vh;" scroll-y>
+    <view class="divider"></view>
+    <view class="today-annual">
+      <view>
+        <image src="../../images/bot_avatar.png"></image>
+      </view>
+      <view class="annualtitle">{{annualtitle}}</view>
+    </view>
+    <view class="mechat">
+      <view>
+        <image src="../../images/avatar.png" class="avatar-self"></image>
+      </view>
+      <view class="msg">你好，请帮我分析我上传的这一份年报文件，并生成一份报告。</view>
+    </view>
+    <view class="report">
+      <view class="cover"></view>
+      <view class="reportName">{{annual.reportName}}</view>
+    </view>
 
-  <view wx:for="{{chatlist}}" wx:key="index">
-    <view wx:if="{{item.role == 1}}" class="botchat">
-      <image src="../../images/bubble1.png"></image>
-      <text>{{item.message}}</text>
+    <view class="divider"></view>
+
+    <view wx:for="{{chatlist}}" wx:key="index">
+      <view wx:if="{{item.role == 1}}" class="botchat">
+        <view>
+          <image src="../../images/bubble1.png" class="avatar-bot"></image>
+        </view>
+        <text class="msg grayBG">{{item.message}}</text>
+      </view>
+      <view wx:if="{{item.role == 0}}" class="mechat">
+        <view>
+          <image src="../../images/avatar.png" class="avatar-self"></image>
+        </view>
+        <text class="msg">{{item.message}}</text>
+      </view>
+
+      <view class="divider"></view>
+    </view>
+  </scroll-view>
+
+  <view class="input-container" style="padding-bottom:{{bottomHeight}}px">
+    <textarea class="text-area" placeholder-class="请输入文字" 	confirm-type="send" cursor-spacing="30" maxlength="500" disable-default-padding="{{true}}" hold-keyboard="{{true}}" placeholder="输入信息" bindinput="inputClick" value="{{inputMsg}}"></textarea>
+    <!-- <input placeholder="请输入文字" bindinput="handleInput"></input> -->
+    <view class="bottom">
+      <image src="../../images/microphone.png" mode="heightFix" class="bottomicon"></image>
+      <image src="../../images/paperclip.png" mode="heightFix" class="bottomicon"></image>
+      <view class="submit-button" bindtap="sendText">
+        <image src="../../images/send.png" mode="heightFix"></image>
+        发送
+      </view>
     </view>
   </view>
 </scroll-view>

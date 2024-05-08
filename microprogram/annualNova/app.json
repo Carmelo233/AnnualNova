@@ -3,6 +3,7 @@
     "pages/login/login",
     "pages/home/home",
     "pages/chat/chat",
+    "pages/test/test",
     "pages/logs/logs"
   ],
   "window": {

@@ -1,13 +1,12 @@
 // pages/chat/chat.js
+var app = getApp()
 Page({
   data: {
-    annual: {
-      id: 1,
-      reportName: "一种综合性年报信息提取和评价系统及方法.doc",
-      createTime: "2024-05-02T15:35:34.000+08:00"
-    },
+    annual: "",
+    annualtitle: "",
     chatlist: "",
-    msg: "请分析一下比亚迪2022年的营收情况。"
+    inputMsg: '',
+    bottomHeight: null
   },
   onLoad: function (option) {
     // 监听acceptDataFromOpenerPage事件，获取上一页面通过eventChannel传送到当前页面的数据
@@ -15,11 +14,21 @@ Page({
     let eventChannel = this.getOpenerEventChannel();
     eventChannel.on('acceptDataFromOpenerPage', function (data) {
       that.setData({
-        annual: data.annual.data.annual
+        annual: data.data.annual
       })
     })
-    that.getchatlist()
-    // console.log(that.data);
+    this.getannualtitle()
+    this.getchatlist()
+    this.setData({
+      bottomHeight: app.globalData.bottomHeight
+    }) 
+    console.log(this.data);
+  },
+  getannualtitle() {
+    var title = this.data.annual.reportName.split('.')[0]
+    this.setData({
+      annualtitle: title
+    })
   },
   getchatlist() {
     var that = this
@@ -44,5 +53,23 @@ Page({
       }
     })
   },
-  
+  handleInput: function (event) {
+    this.setData({
+      inputText: event.detail.value
+    });
+  },
+  sendMsg: function () {
+    const text = this.data.inputText;
+    if (text.trim()) {
+      // 发送文本内容到服务器或其他操作
+      console.log('发送的文本内容：', text);
+    } else {
+      // 提示用户输入不能为空
+      wx.showToast({
+        title: '请输入文字',
+        icon: 'none',
+        duration: 2000
+      });
+    }
+  }
 })
