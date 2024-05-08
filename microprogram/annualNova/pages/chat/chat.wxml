@@ -1,2 +1,30 @@
-<!--pages/chat/chat.wxml-->
-<button bind:tap="getchatlist">获取</button>
+<view class="blacktoanalyze">
+  <image src="../../images/back.png"></image>
+  回到文件分析界面
+</view>
+
+<view class="divider"></view>
+
+<scroll-view>
+  <view class="today-annual">
+    <image src="../../images/bot_avatar.png"></image>
+    <view>今日年报</view>
+  </view>
+  <view class="chat">
+    <view>你好，请帮我分析我上传的这一份年报文件，并生成一份报告。</view>
+    <image src="../../images/avatar.png"></image>
+  </view>
+  <view class="report">
+    <view class="cover"></view>
+    <view>{{annual.data.reportName}}</view>
+  </view>
+
+  <view class="divider"></view>
+
+  <view wx:for="{{chatlist}}" wx:key="index">
+    <view wx:if="{{item.role == 1}}" class="botchat">
+      <image src="../../images/bubble1.png"></image>
+      <text>{{item.message}}</text>
+    </view>
+  </view>
+</scroll-view>

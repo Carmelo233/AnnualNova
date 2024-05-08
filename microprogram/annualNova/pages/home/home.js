@@ -3,10 +3,14 @@ Page({
     todaydate: '',
     lastdate: '2024/04/30',
     annuallist: [{
-        title: "广东省广州市某县市场监管局部署年报公示工作",
-        date: "2024/05/01"
-      }
-    ],
+      id: 1,
+      reportName: "一种综合性年报信息提取和评价系统及方法.doc",
+      createTime: "2024-05-02T15:35:34.000+08:00"
+    },{
+      id: 2,
+      reportName: "一种综合性年报信息提取和评价系统及方法.doc",
+      createTime: "2024-05-02T15:35:34.000+08:00"
+    }],
     isuploaderr: false,
     uploadimg: "../../images/upload.png",
     status1: {
@@ -38,11 +42,6 @@ Page({
     var date = new Date
     this.normTodayData(date)
     console.log("该文件上传日期是否是当日：" + (String)(this.data.todaydate == this.data.annuallist[0].date));
-
-    // 测试变换stats
-    this.setData({
-      curstatus: this.data.status2 
-    })
   },
   normTodayData(date) {
     var ddm = (date.getMonth() + 1) < 10 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1)
@@ -61,11 +60,11 @@ Page({
         const tempFilePath = res.tempFiles[0].path;
         // console.log(tempFilePath);
         that.uploadFile(tempFilePath); // 调用上传函数
-
       },
     })
   },
   uploadFile(tempFilePath) {
+    var that = this
     wx.uploadFile({
       url: 'http://112.74.176.236:9300/annual/v1/file/upload',
       header: {
@@ -75,12 +74,35 @@ Page({
       name: "file",
       filePath: tempFilePath,
       success(res) {
-        const data = res.data
         console.log(res);
+        if(res.statusCode === 200){
+          console.log(res.data.data);
+          // TODO 
+          // 带年报完整信息传过去
+          that.navigateTochat(res.data.data)
+        }
+        else{
+          that.setData({
+            curstatus: that.data.status2
+          })
+        }
       },
       fail(err) {
         console.log(err);
       }
     })
+  },
+  navigateTochat(aAnnual){
+    wx.navigateTo({
+      url: '../chat/chat',
+      success: function(res) {
+        // 通过eventChannel向被打开页面传送数据
+        res.eventChannel.emit('acceptDataFromOpenerPage', { data: aAnnual })
+      }
+    })
+  },
+  chicktochat(e){
+    // console.log(e.currentTarget.dataset);
+    this.navigateTochat(e.currentTarget.dataset)
   }
 })

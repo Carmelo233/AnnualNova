@@ -20,13 +20,10 @@ Page({
               })
             }
           })
-
           // TODO 
-          // 待前后联调结束后删除
           wx.navigateTo({
             url: '../home/home',
-          })
-        
+          }) 
         } else {
           console.log('登录失败！' + res.errMsg)
         }
