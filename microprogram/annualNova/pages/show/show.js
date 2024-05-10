@@ -22,9 +22,6 @@ Page({
     this.setData({
       bottomHeight: app.globalData.bottomHeight
     })
-    console.log(this.data);
-  },
-  onShow() {
     // console.log("show");
     wx.showLoading({
       title: '对年报分析中',
@@ -35,6 +32,10 @@ Page({
     setTimeout(function () {
       wx.hideLoading()
     }, 3000)
+    console.log(this.data);
+  },
+  onShow() {
+
   },
   getansres() {
     var that = this
@@ -83,7 +84,7 @@ Page({
       },
       name: "file",
       filePath: tempFilePath,
-      success(res) { 
+      success(res) {
         var responseData = JSON.parse(res.data);
         console.log("上传年报成功：", res);
         if (responseData.code === 200) {
@@ -92,9 +93,18 @@ Page({
             reportId: responseData.data
           })
           console.log(that.data);
-          // setTimeout(() => {
-          //   this.getansres()
-          // }, 2000);
+          // console.log("show");
+          
+          // 年报分析
+          wx.showLoading({
+            title: '对年报分析中',
+          })
+          setTimeout(() => {
+            that.getansres()
+          }, 3000);
+          setTimeout(function () {
+            wx.hideLoading()
+          }, 3000)
         } else {
           that.setData({
             curstatus: that.data.status2
