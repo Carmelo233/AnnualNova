@@ -26,7 +26,6 @@ page {
   font-size: 40rpx;
   font-weight: 350;
   color: #FFFFFF;
-
 }
 
 .blacktoanalyze image {
@@ -45,7 +44,7 @@ page {
 }
 
 .today-annual {
-  display: inline-flex;
+  display: flex;
   margin: 20rpx 30rpx 20rpx 0;
 }
 
@@ -53,6 +52,14 @@ page {
   align-self: center;
   font-weight: bold;
   color: rgba(0, 0, 0, 0.8);
+
+  text-align: left;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
 
 .today-annual image {
@@ -91,11 +98,12 @@ page {
   font-weight: lighter;
   color: rgba(0, 0, 0, 0.9);
   padding: 10rpx;
+  line-height: 1.8em;
 }
 
 .grayBG {
   background: #F7F9FB;
-  border-radius: 30rpx;
+  border-radius: 0 20rpx 30rpx 30rpx;
 }
 
 .report {
@@ -119,6 +127,14 @@ page {
   margin: auto;
   margin-right: 30rpx;
   padding-bottom: 30rpx;
+
+  text-align: left;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
 
 .input-container {

@@ -1,10 +1,10 @@
 <scroll-view class="scrollarea">
-  <view class="blacktoanalyze">
+  <view class="blacktoanalyze" bind:tap="backtoshow">
     <image src="../../images/back.png" mode="heightFix"></image>
     回到文件分析界面
   </view>
 
-  <scroll-view style="height: 70vh;" scroll-y>
+  <scroll-view style="height: 70vh;" scroll-y  scroll-into-view="{{toView}}" id="scrollView">
     <view class="divider"></view>
     <view class="today-annual">
       <view>
@@ -23,23 +23,21 @@
       <view class="reportName">{{annual.reportName}}</view>
     </view>
 
-    <view class="divider"></view>
+    <!-- <view class="divider"></view> -->
 
-    <view wx:for="{{chatlist}}" wx:key="index">
-      <view wx:if="{{item.role == 1}}" class="botchat">
+    <view wx:for="{{chatlist}}" wx:key="index" >
+      <view wx:if="{{item.role == 1}}" class="botchat"  id="{{'item-'+index}}">
         <view>
           <image src="../../images/bubble1.png" class="avatar-bot"></image>
         </view>
         <text class="msg grayBG">{{item.message}}</text>
       </view>
-      <view wx:if="{{item.role == 0}}" class="mechat">
+      <view wx:if="{{item.role == 0}}" class="mechat"  id="{{'item-'+index}}"> 
         <view>
           <image src="../../images/avatar.png" class="avatar-self"></image>
         </view>
         <text class="msg">{{item.message}}</text>
       </view>
-
-      <view class="divider"></view>
     </view>
   </scroll-view>
 
@@ -49,7 +47,7 @@
     <view class="bottom">
       <image src="../../images/microphone.png" mode="heightFix" class="bottomicon"></image>
       <image src="../../images/paperclip.png" mode="heightFix" class="bottomicon"></image>
-      <view class="submit-button" bindtap="sendText">
+      <view class="submit-button" bindtap="tapSendMsg">
         <image src="../../images/send.png" mode="heightFix"></image>
         发送
       </view>

@@ -54,6 +54,7 @@ page {
   font-size: 38rpx;
   font-weight: lighter;
   color: #000000;
+  
   text-align: left;
   white-space: normal;
   overflow: hidden;

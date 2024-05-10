@@ -11,7 +11,7 @@ Page({
       },
       data: {
         // message:that.data.msg,
-        reportId: 13
+        reportId: 15
       },
       success(res) {
         console.log(res);
