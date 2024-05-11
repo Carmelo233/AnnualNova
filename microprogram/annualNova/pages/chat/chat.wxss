@@ -126,6 +126,7 @@ page {
 .report .reportName {
   margin: auto;
   margin-right: 30rpx;
+  margin-left: 0;
   padding-bottom: 30rpx;
 
   text-align: left;

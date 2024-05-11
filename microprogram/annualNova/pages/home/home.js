@@ -31,7 +31,7 @@ Page({
       upload_button_img: "../../images/upload-button.png"
     },
   },
-  onLoad() {
+  onShow() {
     this.getannuallist()
     // this.getTodayAnnualList()
     // this.getLastAnnualList()
@@ -52,7 +52,7 @@ Page({
           that.setData({
             annuallist: res.data.data
           })
-          // console.log(that.data.annuallist);
+          console.log(that.data.annuallist);
           that.getTodayAnnualList()
           that.getLastAnnualList()
         }
@@ -80,14 +80,19 @@ Page({
   getTodayAnnualList() {
     let annuallist = this.data.annuallist
     var todaylist = []
-    var that = this
     // 直接在遍历中利用isToday就好啦
-    annuallist.forEach(function (item, index) {
-      if (that.isToday(item.createTime)) {
-        todaylist.push(item)
+    var i = annuallist.length - 1
+    for (; i >= 0; --i) {
+      if (this.isToday(annuallist[i].createTime)) {
+        todaylist.push(annuallist[i])
       }
-      // console.log(index);
-    })
+    }
+    // annuallist.forEach(function (item, index) {
+    //   if (that.isToday(item.createTime)) {
+    //     todaylist.push(item)
+    //   }
+    //   // console.log(index);
+    // })
     this.setData({
       todayannullist: todaylist
     })
@@ -153,13 +158,14 @@ Page({
       count: 1,
       type: 'file',
       success(res) {
-        const tempFilePath = res.tempFiles[0].path;
-        // console.log(tempFilePath);
-        that.uploadFile(tempFilePath); // 调用上传函数
+        var tempFilePath = res.tempFiles[0].path;
+        var file = res.tempFiles[0];
+        console.log(file);
+        that.uploadFile(file); // 调用上传函数
       },
     })
   },
-  uploadFile(tempFilePath) {
+  uploadFile(file) {
     var that = this
     wx.uploadFile({
       url: 'http://112.74.176.236:9300/annual/v1/file/upload',
@@ -168,7 +174,10 @@ Page({
         'codespace-annual-report-system': '9hP&5rL@7jS!2gW*3tY',
       },
       name: "file",
-      filePath: tempFilePath,
+      filePath: file.path,
+      formData: {
+        'fileName': file.name, //file.name为通过wx.chooseMessageFile选中的文件名
+      },
       success(res) {
         var responseData = JSON.parse(res.data);
         console.log("上传年报成功：", responseData);
@@ -182,6 +191,9 @@ Page({
         }
       },
       fail(err) {
+        that.setData({
+          curstatus: that.data.status2
+        })
         console.log(err);
       }
     })
