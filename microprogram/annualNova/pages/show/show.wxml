@@ -1,0 +1,42 @@
+<scroll-view class="scrollarea" style="padding-bottom:{{bottomHeight}}px">
+  <view class="blacktoanalyze" bind:tap="backtohome">
+    <image src="../../images/back.png" mode="heightFix"></image>
+    回到主界面
+  </view>
+
+  <view class="divider"></view>
+
+  <view class="show-container">
+    <view class="report">
+      <view class="cover"></view>
+      <view class="report-right">
+        <view class="reportName">{{annual.reportName}}</view>
+        <view class="reupload"  bind:tap="uploadannual">
+          <image src="../../images/refresh.png" mode="heightFix"></image>
+          重新上传
+        </view>
+      </view>
+    </view>
+
+    <view class="totalscore">
+      <view>总得分：{{reportdata.comprehensiveScore}}</view>
+      <image src="../../images/help.png" mode="heightFix"></image>
+    </view>
+
+    <scroll-view scroll-y class="summary">
+      <view class="divider" style="width: 100%;"></view>
+      <view class="title">• 关键财务数据摘要</view>
+      <view class="content">{{reportdata.financialAbstract}}</view>
+      <view class="divider"></view>
+      <view class="title">• 非结构化文本摘要</view>
+      <view class="content">{{reportdata.nonFinancialAbstract}}</view>
+    </scroll-view>
+
+    <view class="bottom-container">
+      <view class="upload-button" bind:tap="toChat">
+        <image src="../../images/startchat.png" mode="heightFix"></image>
+        <view>开始聊天</view>
+      </view>
+    </view>
+  </view>
+</scroll-view>

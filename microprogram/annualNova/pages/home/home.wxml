@@ -1,0 +1,53 @@
+<scroll-view class="scrollarea">
+  <view class="today-annual">
+    <view class="date">{{todaydate}}</view>
+    <view class="today-show">
+      <image src="../../images/bubble1.png"></image>
+      <view>今日年报</view>
+    </view>
+    <scroll-view style="height: calc(12vh + 2px);" scroll-y>
+      <view wx:for="{{todayannullist}}" wx:key="index">
+        <view class="title" data-annual="{{item}}" bind:tap="chicktochat">{{item.reportName}}</view>
+        <view class="divider"></view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="function">
+    <view class="history-annual left-half">
+      <view class="date">{{lastdate}}</view>
+      <scroll-view style="height: calc(18vh + 3px);" scroll-y>
+        <view wx:for="{{lastannallist}}" wx:key="index">
+          <view class="title" data-annual="{{item}}" bind:tap="chicktochat">{{item.reportName}}</view>
+          <view class="divider"></view>
+        </view>
+      </scroll-view>
+    </view>
+    <view class="right-half">
+      <view class="newchat">
+        <image src="../../images/+.png" mode="" />
+        <view bind:tap="uploadannual">新的聊天</view>
+      </view>
+      <view class="earlier-record">
+        <image src="../../images/more_vector.png" mode="" />
+        <text>更早的记录</text>
+      </view>
+      <view class="tools">
+        <image src="../../images/avatar.png" mode="heightFix"></image>
+        <image src="../../images/suntheme.png" mode="heightFix"></image>
+        <image src="../../images/bell.png" mode="heightFix"></image>
+      </view>
+    </view>
+  </view>
+
+  <view class="upload">
+    <image src="{{curstatus.uploadimg}}" mode="heightFix"></image>
+    <view class="msg1">{{curstatus.msg1}}</view>
+    <view class="msg23">{{curstatus.msg2}}</view>
+    <view class="msg23">{{curstatus.msg3}}</view>
+    <view class="upload-button" bind:tap="uploadannual">
+      <image src="{{curstatus.upload_button_img}}" mode="heightFix"></image>
+      <view>{{curstatus.msg4}}</view>
+    </view>
+  </view>
+</scroll-view>
