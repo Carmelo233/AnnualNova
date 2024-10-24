@@ -4,5 +4,8 @@ export const getdataTest = () => {
     return server({
         url: '/test',
         method: 'POST',
+        headers: {
+            isToken: true
+        }
     })
 }

@@ -7,6 +7,10 @@ export const login = (username, password) => {
         data: {
             username: username,
             password: password
+        },
+        headers: {
+            isToken: false,
+            isRepeatSubmit: false
         }
     })
 }
