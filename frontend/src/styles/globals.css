@@ -1,0 +1,43 @@
+:root {
+  /* color */
+  --white: white;
+  --black: rgb(48, 48, 48);
+  --gray: rgb(250, 250, 250);
+  --primary: rgb(29, 147, 171);
+  --second: rgb(231, 248, 255);
+  --hover-color: #f3f3f3;
+  --bar-color: rgba(0, 0, 0, 0.1);
+  --theme-color: var(--gray);
+
+  /* shadow */
+  --shadow: 0px 50px 100px 10px rgb(0, 0, 0, 0.1);
+  --card-shadow: 0px 2px 4px 0px rgb(0, 0, 0, 0.05);
+
+  /* stroke */
+  --border: 1px solid rgb(222, 222, 222);
+
+  --window-width: 90vw;
+  --window-height: 90vh;
+  --sidebar-width: 15vw;
+  --window-content-width: calc(100% - var(--sidebar-width));
+  --message-max-width: 80%;
+  --full-height: 100vh;
+}
+
+/* 自定义滚动条 分别为整体样式、轨道背景颜色、滚动滑块样式 */
+::-webkit-scrollbar {
+  --bar-width: 5px;
+  width: var(--bar-width);
+  height: var(--bar-width);
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--bar-color);
+  border-radius: 20px;
+  background-clip: content-box;
+  border: 1px solid transparent;
+}

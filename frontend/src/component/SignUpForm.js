@@ -1,6 +1,7 @@
 import { Button, Form, Space } from 'antd'
-import React, { useEffect } from "react"
-import { useState } from "react"
+import {useNavigate} from "react-router-dom";
+import React, { useEffect,useState } from "react"
+
 import Link from "antd/es/typography/Link"
 import './login.signup.from.css'
 import { signup } from "../apis/signup"
@@ -12,15 +13,16 @@ export function SignUpForm (props) {
     //装获取的rescode的值
     const [rescode, setRescode] = useState(600)
 
+    const navigate = useNavigate()
+
     useEffect(() => {
         setisreg(true)
     }, [isreg])
 
-    function onClickToreg () {
-        setisreg(false)
-        props.getisreg(false)
+    function onClickTologin () {
+        setisreg(true)
+        props.getisreg(true)
     }
-
 
     const onFinish = (values) => {
         console.log("完成注册表单：", values)
@@ -31,12 +33,13 @@ export function SignUpForm (props) {
             setRescode(res.code)
             // if (res.code === 603) {
             //     alert("用户名被占用！")
-            // } 
+            // }
             if (res.code === 600) {
                 setAccessToken(res.data.accessToken)
                 setRefreshToken(res.data.refreshToken)
+                navigate("/chat")
             } else {
-                console.log("未知登录失败：", res)
+                console.log("未知注册失败：", res)
             }
         })
     }
@@ -117,7 +120,7 @@ export function SignUpForm (props) {
                         <Button type="primary" htmlType="signup" className='signup-form-button'>
                             立即注册
                         </Button>
-                        <Link className='form-item-link' onClick={onClickToreg}>返回登陆页</Link>
+                        <Link className='form-item-link' onClick={onClickTologin}>返回登陆页</Link>
                     </Space>
                 </div>
             </Form.Item>

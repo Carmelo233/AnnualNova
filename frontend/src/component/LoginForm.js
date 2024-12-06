@@ -1,52 +1,51 @@
-import React, { useEffect } from "react"
-import { Button, Form } from 'antd'
-import { useState } from "react"
+import React, {useEffect} from "react";
+import {Button, Form} from 'antd';
+import {useNavigate} from "react-router-dom";
+import {useState} from "react";
 import './login.signup.from.css'
-import Link from "antd/es/typography/Link"
-import { login } from "../apis/login"
-import { setAccessToken, setRefreshToken } from "../config/storage"
+import Link from "antd/es/typography/Link";
+import {login} from "../apis/login";
+import {setAccessToken, setRefreshToken} from "../config/storage";
 
-export function LoginForm (props) {
-    const [isreg, setisreg] = useState(false) //虽然写了状态但暂时没用
-    //装获取的rescode值
+export function LoginForm(props) {
+    const [isreg, setisreg] = useState(false)
+    //装获取的rescode的值
     const [rescode, setRescode] = useState(600)
+
+    const navigate = useNavigate()
+
     useEffect(() => {
         setisreg(false)
-    }, [isreg])
+    }, [isreg]);
 
-    function onFinish (e) {
-        console.log("完成登录表单：", e)
+    function onClickToreg() {
+        setisreg(true)
+        props.getisreg(true)
+    }
 
-        login(e.username, e.password).then(res => {
+    function onFinish(values) {
+        console.log("完成登录表单：", values)
+
+        login(values.usernameS, values.passwordS).then(res => {
             console.log('登录请求成功：', res)
             //获取rescode
             setRescode(res.code)
-
-            // if (res.code === 605) {
-            //     alert("密码错误!")
-            // } else if (res.code === 604) {
-            //     alert("用户不存在！")
-            // } 
             if (res.code === 600) {
                 setAccessToken(res.data.accessToken)
                 setRefreshToken(res.data.refreshToken)
+                navigate("/chat")
             } else {
                 console.log("未知登录失败：", res)
             }
         })
     }
 
-    function onClickToreg () {
-        setisreg(true)
-        props.getisreg(true)
-    }
-
     return (
         <Form
             name="normal_login"
             className="login-form"
-            initialValues={{ remember: true }}
-            style={{ maxWidth: 400 }}
+            initialValues={{remember: true}}
+            style={{maxWidth: 400}}
             onFinish={onFinish}
         >
             {/* 用户名输入 */}
@@ -68,7 +67,7 @@ export function LoginForm (props) {
                     },
                 ]}>
                 <div className='full-width col-center'>
-                    <input type='text' className='form-item-input' placeholder='用户名' />
+                    <input type='text' className='form-item-input' placeholder='用户名'/>
                     {/* TODO */}
                     <Link className='form-item-link' onClick={onClickToreg}>立即注册</Link>
                 </div>
@@ -93,9 +92,9 @@ export function LoginForm (props) {
                     },
                 ]}>
                 <div className='full-width col-center'>
-                    <input type='password' className='form-item-input' placeholder='密码' />
+                    <input type='password' className='form-item-input' placeholder='密码'/>
                     {/* TODO */}
-                    <Link className='form-item-link' style={{ color: '#999' }}>找回密码</Link>
+                    <Link className='form-item-link' style={{color: '#999'}}>找回密码</Link>
                 </div>
             </Form.Item>
 
